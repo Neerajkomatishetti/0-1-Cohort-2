@@ -8,6 +8,6 @@ function wait(n) {
             resolve();
         }, n*1000);
     })
-}
+}     //setTimeout(func(), seconds);
 
 module.exports = wait;
