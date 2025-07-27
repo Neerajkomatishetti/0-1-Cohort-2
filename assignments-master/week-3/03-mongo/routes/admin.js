@@ -6,10 +6,15 @@ const { Course, Admin } = require("../db");
 // Admin Routes
 router.post('/signup', async (req, res) => {
     // Implement admin signup logic
-    const username = req.headers.username;
-    const password = req.headers.password;
+    const username = req.body.username;
+    const password = req.body.password;
 
-    await Admin.create({
+    const UserExists = await Admin.findOne({ username });
+
+    console.log("hi there");
+
+    if (!UserExists){ 
+        await Admin.create({
         username,
         password
     })
@@ -17,6 +22,11 @@ router.post('/signup', async (req, res) => {
     res.json({
         msg:"Admin Added Successfully"
     })
+}else{
+    res.json({
+        msg:"Admin already exists"
+    })
+}
 
 });
 

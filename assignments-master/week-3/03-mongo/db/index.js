@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URL);
+mongoose.connect(process.env.MONGODB_URI);
 
 // Define schemas
 const AdminSchema = new mongoose.Schema({
@@ -16,8 +16,8 @@ const UserSchema = new mongoose.Schema({
     username:String,
     password:String,
     purchasedCourses:[{
-        type:mongoose.Schema.type.ObjectId,
-        ref: "Course"
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'Course'
     }]
 });
 
